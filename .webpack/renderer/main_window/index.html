@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Каталог замовлень AliExpress</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f7f7f7;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 2.2em;
+        margin-bottom: 0.2em;
+        color: #222;
+      }
+      .actions {
+        margin-bottom: 18px;
+      }
+      button {
+        background: #ff4747;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 18px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #e63c3c;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+      }
+      th, td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      th {
+        background: #fafafa;
+        color: #444;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      .link {
+        color: #ff4747;
+        text-decoration: none;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
+      .ali-container {
+        width: 100vw;
+        height: calc(100vh - 48px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .ali-center-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 90vh;
+        position: relative;
+      }
+      .ali-webview {
+        width: 1200px;
+        height: 90vh;
+        min-width: 320px;
+        max-width: 100vw;
+        transform-origin: top center;
+        background: #fff;
+      }
+    </style>
+  <script defer src="/main_window/index.js"></script></head>
+  <body>
+    <div class="tabs">
+      <button class="tab-btn" id="tab-aliexpress">AliExpress</button>
+      <button class="tab-btn" id="tab-catalog">Каталог замовлень</button>
+    </div>
+    <div id="tab-content-aliexpress" class="tab-content ali-container" style="display:none;">
+      <div class="ali-center-wrap">
+        <button id="open-devtools" style="position:absolute;top:16px;left:16px;z-index:10;">DevTools</button>
+        <webview id="aliexpress-webview" src="https://aliexpress.com/" class="ali-webview" style="border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); border:none; background:#fff;"></webview>
+      </div>
+    </div>
+    <div id="tab-content-catalog" class="tab-content" style="display:block;">
+      <div class="container">
+        <h1>Каталог замовлень AliExpress</h1>
+        <div class="actions">
+          <button id="scrape-orders">Зібрати замовлення з AliExpress</button>
+          <button id="export-json">Експорт у JSON</button>
+          <button id="export-csv">Експорт у CSV</button>
+        </div>
+        <table id="orders-table">
+          <thead>
+            <tr>
+              <th>Назва товару</th>
+              <th>Посилання</th>
+              <th>Варіація</th>
+              <th>Кількість</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Динамічно заповнюється -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
